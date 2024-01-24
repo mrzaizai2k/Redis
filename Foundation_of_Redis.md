@@ -5,6 +5,18 @@
  - How to solve them
  - Demo
  - Presentation slides
+
+# References
+https://aws.amazon.com/redis/
+
+https://backendless.com/redis-what-it-is-what-it-does-and-why-you-should-care/#1670599762368-db4223a0-cc7a
+
+https://www.linkedin.com/pulse/why-when-use-redis-hamed-moayeri
+
+http://oldblog.antirez.com/post/take-advantage-of-redis-adding-it-to-your-stack.html
+
+https://redis.io/docs/about/
+
 # Problem statement
 
 ## Slow latest items listings in your home page
