@@ -31,6 +31,8 @@ The classical example is the leaderboard in an online game, for instance a Faceb
 Show a leaderboard with the top #100 scores.
 Show the user its current global rank.
 
+[Leaderboard System Design](https://systemdesign.one/leaderboard-system-design/)
+
 ## Order by user votes and time
 A notable variation of the above leaderboard pattern is the implementation of a site like Reddit or Hacker News, where news are ordered accordingly to a forumla similar to:
 score = points / time^alpha
