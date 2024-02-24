@@ -46,6 +46,40 @@ There is a worker that gets this list and continually computes the final score o
 Another interesting example of statistic that is trivial to do using Redis but is very hard with other kind of databases is to see how many unique users visited a given resource in a given amount of time. For instance I want to know the number of unique registered users, or IP addresses, that accessed a given article in an online newspaper.
 
 # Why it matters
+
+- In-memory data store for ultra-fast data access and retrieval.
+- Supports diverse data structures like strings, hashes, lists, sets, and more.
+- Enables caching for frequent data reads and write optimization.
+- Pub/Sub messaging for real-time data communication.
+- High availability and scalability for mission-critical applications.
+
+
+Example: News Website Powered by Redis
+Problem: Imagine a rapidly growing news website with millions of daily visitors. Traditional databases struggle to handle the constant influx of requests, leading to slow page loading times and frustrated users.
+
+Solution: Enter Redis!
+
+In-memory data store: Redis stores frequently accessed data like news headlines, summaries, and user preferences in memory, offering lightning-fast retrieval compared to traditional databases.
+
+Diverse data structures:
+
+Hashmaps: Store detailed news articles with keys like article ID and values including title, author, content, etc.
+Sorted sets: Order articles by popularity, trending topics, or specific categories for efficient retrieval.
+Lists: Maintain queues for upcoming articles, live updates, or personalized content recommendations.
+Sets: Track unique user visits, interests, or subscribed categories for targeted advertising and content suggestions.
+Caching: Popular articles or user-specific data are cached, reducing database load and significantly improving response times, especially for repeated visitors.
+
+Pub/Sub messaging: Real-time news updates are broadcasted via Pub/Sub, enabling instant notifications on user devices or live feed updates on the website.
+
+High availability and scalability: Redis can be easily scaled horizontally by adding more nodes, ensuring smooth operation even during peak traffic periods. This guarantees high availability and prevents website downtime.
+
+Benefits:
+
+Faster loading times: Users get immediate access to news and updates, improving user experience and satisfaction.
+Personalized content: Tailored recommendations based on user preferences and interests.
+Real-time updates: Users stay informed with instant notifications on breaking news or relevant topics.
+Scalability for growth: The website can handle increasing traffic without performance degradation.
+
 # Theory and technology base
 
 ## Pub/Sub
@@ -64,3 +98,12 @@ With our http://redis.io/commands/rpoplpush list rotation commands it is possibl
 This section alone would deserve a specific blog post... so in short here I'll say that Redis can be used as a replacement for memcached in order to turn your cache into something able to store data in an simpler to update way, so that there is no need to regenerate the data every time. See for reference the first pattern published in this article.
 
 # How to solve them
+
+https://systemdesign.one/leaderboard-system-design/small-scale-leaderboard-write-path.webp
+
+A small-scale leaderboard can leverage the cache-aside pattern on the caching layer for the relational database. The following operations are performed when a player updates the score9:
+
+- The client creates a WebSocket connection to the load balancer for real-time communication
+- The load balancer delegates the client’s request to the closest data center
+- The server updates the player’s score record on the relational database following the cache-aside pattern
+- The server updates the same player’s score record on the cache server following the cache-aside pattern
